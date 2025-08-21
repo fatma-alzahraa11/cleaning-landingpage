@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { User, Phone, Inbox, Mail, CheckCircle2, MessageSquare, Building2 } from "lucide-react";
-import emailjs from "emailjs-com";  
 import PrivacyModal from "./privacy-modal.jsx";
 
 const initialForm = { name: "", telefon: "", adresse: "", email: "", dienstleistung: "", dienstleistungText: "", nachricht: "" };
@@ -79,7 +78,6 @@ function FloatingInput({ id, label, type = "text", value, onChange, placeholder 
   );
 }
 
-
 function FloatingSelect({ id, label, value, onChange, options }) {
   return (
     <div className="relative">
@@ -106,7 +104,7 @@ function FloatingSelect({ id, label, value, onChange, options }) {
         {label}
       </label>
       <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none">
-        <svg className="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </div>
@@ -169,33 +167,33 @@ export default function ContactForm({ refObj }) {
     setShowPrivacyModal(true);
   };
 
-  const handlePrivacyAccept = () => {
+  const handlePrivacyAccept = async () => {
     setSubmitted(true);
-
-    // إرسال البيانات عبر EmailJS
-    emailjs
-      .sendForm(
-        "service_gy5yrf2",      // Service ID من لوحة تحكم EmailJS
-        "template_6ujj76g",     // Template ID الذي أنشأته
-        document.getElementById("contact-form"), // استخدام الفورم
-        "DjDJRQ-xShSAUg5cJ"       // Public Key من EmailJS
-      )
-      .then(
-        (result) => {
-          console.log("Message Sent!", result.text);
-          setSubmitted(true);
-          setTimeout(() => {
-            setForm(initialForm);
-            setSubmitted(false);
-            alert("Vielen Dank! Wir melden uns in Kürze bei Ihnen.");
-          }, 800);
+    try {
+      const response = await fetch('http://localhost/cleaning-backend/contact.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
-        (error) => {
-          console.log("Error:", error.text);
-          alert("Ein Fehler ist aufgetreten, bitte versuchen Sie es erneut.");
+        body: JSON.stringify(form),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        console.log("Message Sent!", result.message);
+        setTimeout(() => {
+          setForm(initialForm);
           setSubmitted(false);
-        }
-      );
+          alert("Vielen Dank! Wir melden uns in Kürze bei Ihnen.");
+        }, 800);
+      } else {
+        throw new Error(result.message);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Ein Fehler ist aufgetreten, bitte versuchen Sie es erneut.");
+      setSubmitted(false);
+    }
   };
 
   return (
@@ -311,7 +309,6 @@ export default function ContactForm({ refObj }) {
                   onChange={onChange("dienstleistung")}
                   options={services}
                 />
-                {/* حقل مخفي يحتوي على النص الألماني للخدمة */}
                 <input 
                   type="hidden" 
                   name="dienstleistungText" 
@@ -346,7 +343,6 @@ export default function ContactForm({ refObj }) {
         </div>
       </div>
       
-      {/* Privacy Modal */}
       <PrivacyModal
         isOpen={showPrivacyModal}
         onClose={() => setShowPrivacyModal(false)}
