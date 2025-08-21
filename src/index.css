@@ -4,17 +4,107 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Accessibility and motion preferences */
+/* تحسينات الأداء */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Oswald', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* تحسين الصور */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* تحسين الحركات */
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
-html,
-body,
-#root {
-  height: 100%;
+/* تحسين التحميل */
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* تحسين الخطوط */
+@font-face {
+  font-family: 'Oswald';
+  font-display: swap;
+  src: url('/fonts/Oswald-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Oswald';
+  font-display: swap;
+  src: url('/fonts/Oswald-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* تحسين الأداء للعناصر المتحركة */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* تحسين التمرير */
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+/* تحسين الصور الخلفية */
+.bg-cover {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* تحسين الأزرار */
+.btn-primary {
+  @apply bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg;
+}
+
+/* تحسين البطاقات */
+.card {
+  @apply bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300;
+}
+
+/* تحسين النصوص */
+.text-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

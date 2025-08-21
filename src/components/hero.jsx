@@ -106,6 +106,8 @@ const HeroSection = memo(() => {
           backgroundPosition: "center center",
           backgroundSize: "cover",
         }}
+        role="img"
+        aria-label="Sauberes Team bei der Arbeit"
       ></div>
 
       {/* طبقة شفافة زرقاء قاتمة فوق الصورة - محسنة */}
@@ -209,6 +211,8 @@ const HeroSection = memo(() => {
                 className="w-99  rounded-xl object-cover md:mt-60 lg:mt-0"
                 loading="lazy"
                 decoding="async"
+                width="700"
+                height="700"
                 fetchPriority="high"
               />
             </div>

@@ -135,6 +135,10 @@ export default function Services() {
                         ? "object-contain"
                         : "object-cover"
                     }`}
+                    loading="lazy"
+                    decoding="async"
+                    width="1280"
+                    height="720"
                     style={{
                       objectPosition:
                         s.title === "Professionelle Reinigungsdienste"

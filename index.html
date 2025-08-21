@@ -3,9 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-     <link className="w-8 h-8" rel="icon" type="image/png" href="/images/logo.png" />
+    <link className="w-8 h-8" rel="icon" type="image/png" href="/images/logo.png" />
     <title>GEBÄUDEREINIGUNG</title>
     <meta name="description" content="Cleaning, furniture moving, and home improvement & maintenance — done professionally." />
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#2B3A64" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Cleaning Services" />
+    
+    <!-- Performance Meta Tags -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no" />
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/images/cleaning-team-hero.jpg" as="image" />
+    <link rel="preload" href="/images/cleaning-professional.png" as="image" />
+    
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
   </head>
   <body class="antialiased">
     <div id="root"></div>

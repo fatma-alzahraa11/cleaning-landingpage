@@ -225,6 +225,10 @@ export default function About() {
                 src="/images/about-team.png"
                 alt="Unser professionelles Team bereit zu helfen"
                 className="w-full h-[300px] sm:h-[450px] object-cover hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+                decoding="async"
+                width="1200"
+                height="675"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent"></div>
 
