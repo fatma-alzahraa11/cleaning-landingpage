@@ -63,7 +63,7 @@ function FloatingInput({ id, label, type = "text", value, onChange, placeholder 
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="peer w-full bg-transparent outline-none py-3"
+        className="peer w-full bg-transparent outline-none py-4"
         aria-label={label}
         name={id}
       />
@@ -87,7 +87,7 @@ function FloatingSelect({ id, label, value, onChange, options }) {
         id={id}
         value={value}
         onChange={onChange}
-        className="peer w-full bg-transparent outline-none appearance-none pr-14 sm:pr-12 py-3"
+        className="peer w-full bg-transparent outline-none appearance-none pr-14 sm:pr-12 py-4"
         aria-label={label}
         name={id}
       >
@@ -123,7 +123,7 @@ function FloatingTextarea({ id, label, value, onChange, placeholder = " ", rows 
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="peer w-full bg-transparent outline-none resize-none"
+        className="peer w-full bg-transparent outline-none resize-none py-4"
         aria-label={label}
         name={id}
       />
