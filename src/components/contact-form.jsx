@@ -200,6 +200,20 @@ export default function ContactForm({ refObj }) {
 
   return (
     <section id="contact" ref={refObj} className="py-16 sm:py-24 bg-gradient-to-b from-blue-50/60 to-white">
+      <style>{`
+        /* Ensure autofilled fields stay white in Chrome/Edge */
+        #contact-form input:-webkit-autofill,
+        #contact-form input:-webkit-autofill:hover,
+        #contact-form input:-webkit-autofill:focus,
+        #contact-form textarea:-webkit-autofill,
+        #contact-form select:-webkit-autofill {
+          -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+          box-shadow: 0 0 0 1000px #ffffff inset !important;
+          -webkit-text-fill-color: #0f172a;
+          caret-color: #0f172a;
+          transition: background-color 9999s ease-in-out 0s;
+        }
+      `}</style>
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-5 gap-10 items-start">
           <div className="lg:col-span-2 space-y-5 transition-all duration-700 will-change-transform" data-animate>
