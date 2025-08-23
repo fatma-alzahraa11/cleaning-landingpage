@@ -225,7 +225,7 @@ export default function ContactForm({ refObj }) {
   const handlePrivacyAccept = async () => {
     setSubmitted(true);
     try {
-      const response = await fetch('http://localhost/cleaning-backend/contact.php', {
+      const response = await fetch('/cleaning-backend/contact.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
