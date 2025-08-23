@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { User, Phone, Inbox, Mail, CheckCircle2, MessageSquare, Building2 } from "lucide-react";
+import { User, Phone, Inbox, Mail, CheckCircle2, MessageSquare, Building2, X, CheckCircle } from "lucide-react";
 import PrivacyModal from "./privacy-modal.jsx";
 
 const initialForm = { name: "", telefon: "", adresse: "", email: "", dienstleistung: "", dienstleistungText: "", nachricht: "" };
@@ -8,9 +8,9 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // تعريف الخدمات الثلاث
 const services = [
   { value: "", label: "Wählen Sie die Dienstleistungen", germanText: "" },
-  { value: "Professionelle Reinigungsdienste", label: "Professionelle Reinigungsdienste", germanText: "Professionelle Reinigungsdienste" },
-  { value: "Schnelle und sichere Umzugsdienste", label: "Schnelle und sichere Umzugsdienste", germanText: "Schnelle und sichere Umzugsdienste" },
-  { value: "Bau- und Sanierungsdienste (Baustelle)", label: "Bau- und Sanierungsdienste (Baustelle)", germanText: "Bau- und Sanierungsdienste (Baustelle)" }
+  { value: "Reinigung", label: "Reinigung", germanText: "Reinigung" },
+  { value: "Baustelle", label: "Baustelle", germanText: "Baustelle" },
+  { value: "Umzug", label: "Umzug", germanText: "Umzug" }
 ];
 
 const phoneFormat = (value) => {
@@ -80,12 +80,12 @@ function FloatingInput({ id, label, type = "text", value, onChange, placeholder 
 
 function FloatingSelect({ id, label, value, onChange, options }) {
   return (
-    <div className="relative">
+    <div className="relative group">
       <select
         id={id}
         value={value}
         onChange={onChange}
-        className="peer w-full bg-transparent outline-none appearance-none pr-14 sm:pr-12 py-4"
+        className="peer w-full bg-transparent outline-none appearance-none pr-14 sm:pr-12 py-4 pl-1 cursor-pointer"
         aria-label={label}
         name={id}
       >
@@ -97,15 +97,25 @@ function FloatingSelect({ id, label, value, onChange, options }) {
       </select>
       <label
         htmlFor={id}
-        className="pointer-events-none absolute left-0 -top-2.5 text-xs text-blue-700 transition-all
+        className="pointer-events-none absolute left-1 pt-2 -top-2.5 text-xs text-blue-700 transition-all
                    peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-slate-500 peer-placeholder-shown:text-sm
                    peer-focus:-top-2.5 peer-focus:translate-y-0 peer-focus:text-xs peer-focus:text-blue-700"
       >
         {label}
       </label>
       <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none">
-        <svg className="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        <svg 
+          className="w-5 h-5 text-slate-400 transition-all duration-300 peer-focus:text-blue-600 group-hover:text-slate-600 peer-focus:scale-110" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={2.5} 
+            d="M19 9l-7 7-7-7" 
+          />
         </svg>
       </div>
     </div>
@@ -137,11 +147,56 @@ function FloatingTextarea({ id, label, value, onChange, placeholder = " ", rows 
   );
 }
 
+// Notification Component
+function Notification({ message, type = "success", onClose }) {
+  return (
+    <div className={`fixed top-4 right-4 z-50 max-w-sm w-full bg-white rounded-lg shadow-lg border-l-4 ${
+      type === "success" ? "border-green-500" : "border-red-500"
+    } transform transition-all duration-300 ease-in-out`}>
+      <div className="p-4">
+        <div className="flex items-start">
+          <div className="flex-shrink-0">
+            {type === "success" ? (
+              <CheckCircle className="h-6 w-6 text-green-500" />
+            ) : (
+              <div className="h-6 w-6 text-red-500">⚠️</div>
+            )}
+          </div>
+          <div className="ml-3 flex-1">
+            <p className={`text-sm font-medium ${
+              type === "success" ? "text-green-800" : "text-red-800"
+            }`}>
+              {message}
+            </p>
+          </div>
+          <div className="ml-4 flex-shrink-0">
+            <button
+              onClick={onClose}
+              className="inline-flex text-gray-400 hover:text-gray-600 focus:outline-none"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ContactForm({ refObj }) {
   const [form, setForm] = useState(initialForm);
   const [submitted, setSubmitted] = useState(false);
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+  const [notification, setNotification] = useState(null);
   const completedCount = Object.values(form).filter(Boolean).length;
+
+  const showNotification = (message, type = "success") => {
+    setNotification({ message, type });
+    // Auto hide after 5 seconds
+    setTimeout(() => {
+      setNotification(null);
+    }, 5000);
+  };
 
   const onChange = (key) => (e) => {
     const val = e.target.value;
@@ -159,7 +214,7 @@ export default function ContactForm({ refObj }) {
 
     // تحقق من البيانات المدخلة
     if (!form.name || !form.telefon || !form.adresse || !emailRegex.test(form.email) || !form.dienstleistung) {
-      alert("Bitte füllen Sie alle erforderlichen Felder mit gültigen Informationen aus.");
+      showNotification("Bitte füllen Sie alle erforderlichen Felder mit gültigen Informationen aus.", "error");
       return;
     }
 
@@ -184,20 +239,29 @@ export default function ContactForm({ refObj }) {
         setTimeout(() => {
           setForm(initialForm);
           setSubmitted(false);
-          alert("Vielen Dank! Wir melden uns in Kürze bei Ihnen.");
+          showNotification("Vielen Dank! Wir melden uns in Kürze bei Ihnen.");
         }, 800);
       } else {
         throw new Error(result.message);
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Ein Fehler ist aufgetreten, bitte versuchen Sie es erneut.");
+      showNotification("Ein Fehler ist aufgetreten, bitte versuchen Sie es erneut.", "error");
       setSubmitted(false);
     }
   };
 
   return (
     <section id="contact" ref={refObj} className="py-16 sm:py-24 bg-gradient-to-b from-blue-50/60 to-white">
+      {/* Notification */}
+      {notification && (
+        <Notification
+          message={notification.message}
+          type={notification.type}
+          onClose={() => setNotification(null)}
+        />
+      )}
+      
       <style>{`
         /* Ensure autofilled fields stay white in Chrome/Edge */
         #contact-form input:-webkit-autofill,
