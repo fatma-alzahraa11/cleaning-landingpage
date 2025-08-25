@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xn--sdh-gebudereinigung-mwb.de/sitemap.xml

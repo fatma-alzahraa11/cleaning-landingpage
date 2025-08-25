@@ -150,13 +150,12 @@ export default function About() {
             Über unser Unternehmen
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto font-oswald leading-relaxed">
-            Wir sind nicht nur ein Reinigungsservice – wir sind Ihr
-            vertrauenswürdiger Partner, der schöne und gesunde Räume schafft und
-            pflegt.
+            Ihr zuverlässiger Partner für Gebäudereinigung in Augsburg
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+          
           {/* Inhalt auf der linken Seite */}
           <div className="space-y-8">
             <div className="space-y-6">
@@ -164,18 +163,26 @@ export default function About() {
                 Unsere Mission & Vision
               </h3>
               <p className="text-slate-600 leading-relaxed text-lg font-oswald">
-                Wir sind ein Team von engagierten Fachleuten, das sich darauf
-                spezialisiert hat, Häuser erstrahlen zu lassen und Umzüge
-                mühelos zu gestalten. Unsere Mission ist es, zuverlässige,
-                qualitativ hochwertige Dienstleistungen mit persönlichem Touch
-                zu bieten – damit Sie sich auf das Wesentliche konzentrieren
-                können.
+                Willkommen bei SDH-Gebäudereinigung, Ihrem Spezialisten für professionelle Reinigungsdienste in Augsburg. Als führende Putzfirma in der Region bieten wir maßgeschneiderte Reinigungslösungen für private Haushalte, Büros und Unternehmen.
               </p>
+               {/* <p className="text-slate-600 leading-relaxed text-lg font-oswald">
+                Unsere Expertise - Ihr Vorteil <br />
+
+Als Ihre Reinigungsfirma in Augsburg verstehen wir die einzigartigen Anforderungen der Region. Wir sind stolz darauf, höchste Standards in der Grundreinigung und Haushaltsreinigung zu setzen. Ob Sie eine Wohnungsreinigung in Augsburg nach dem Umzug benötigen, eine regelmäßige Büroreinigung oder eine einmalige Grundreinigung-wir haben die passende Lösung für Sie.
+              </p> */}
+
+              {/* قسم الخدمات */}
+              <h3 className="text-2xl font-bold text-[#2B3A64] font-oswald">
+                Unsere Dienstleistungen umfassen:
+              </h3>
+              <ul className="list-disc pl-6 text-slate-600 leading-relaxed text-lg font-oswald">
+                <li><strong>Büroreinigung:</strong> Erschaffen Sie eine saubere und produktive Arbeitsumgebung.</li>
+                <li><strong>Haushaltsreinigung:</strong> Von der Wohnungsreinigung bis zur Fensterreinigung in Augsburg.</li>
+                <li><strong>Umzugsreinigung:</strong> Wir sorgen dafür, dass Ihre alte oder neue Wohnung makellos sauber ist.</li>
+                <li><strong>Treppenhausreinigung:</strong> Sorgen Sie für einen sauberen und einladenden Eingangsbereich.</li>
+              </ul>
               <p className="text-slate-600 leading-relaxed text-lg font-oswald">
-                Mit transparenter Preisgestaltung, flexiblen Zeitplänen und
-                geprüften Experten sorgen wir für Konsistenz und Pflege bei
-                jedem Besuch – egal ob es sich um eine gründliche Reinigung,
-                Möbeltransporte oder präventive Wartung handelt.
+               Wir verwenden ausschließlich umweltfreundliche Reinigungsprodukte und modernste Techniken, um erstklassige Ergebnisse zu erzielen. Vertrauen Sie auf die Erfahrung und das Engagement unseres Teams.
               </p>
             </div>
 

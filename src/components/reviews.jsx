@@ -1,9 +1,11 @@
 "use client"
 
-import { useMemo } from "react"
+import { useMemo, useState, useEffect } from "react"
 import { Star, Quote } from "lucide-react"
 
 export default function Reviews() {
+  const [currentSlide, setCurrentSlide] = useState(0)
+  
   const reviews = useMemo(
     () => [
       {
@@ -46,6 +48,15 @@ export default function Reviews() {
     []
   )
 
+  // التمرير التلقائي كل 5 ثواني في الأحجام الصغيرة
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % reviews.length)
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [reviews.length])
+
   const renderStars = (rating) => {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
@@ -70,7 +81,8 @@ export default function Reviews() {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {/* عرض التقيمات - شبكة عادية للشاشات المتوسطة+ */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {reviews.map((review, idx) => (
             <div
               key={review.name}
@@ -101,6 +113,57 @@ export default function Reviews() {
               <div className="pointer-events-none absolute -z-10 inset-0 rounded-2xl ring-1 ring-blue-200/0 group-hover:ring-blue-200/80 transition"></div>
             </div>
           ))}
+        </div>
+
+        {/* عرض التقيمات - تمرير تلقائي للشاشات الصغيرة */}
+        <div className="md:hidden relative overflow-hidden">
+          <div 
+            className="flex transition-transform duration-500 ease-in-out"
+            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+          >
+            {reviews.map((review, idx) => (
+              <div
+                key={review.name}
+                className="w-full flex-shrink-0 px-4"
+              >
+                <div className="group relative rounded-2xl bg-white border border-slate-200 shadow-sm p-6">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Quote className="size-5 text-blue-600" />
+                    <span className="text-sm text-blue-600 font-medium font-oswald">{review.service}</span>
+                  </div>
+                  
+                  <div className="flex items-center gap-1 mb-4">
+                    {renderStars(review.rating)}
+                  </div>
+                  
+                  <p className="text-slate-700 mb-4 font-oswald leading-relaxed">
+                    "{review.comment}"
+                  </p>
+                  
+                  <div className="flex items-center justify-between">
+                    <span className="font-semibold text-[#2B3A64] font-oswald">{review.name}</span>
+                    <div className="text-sm text-slate-500 font-oswald">
+                      {review.rating}/5 Sterne
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          {/* مؤشرات التنقل */}
+          <div className="flex justify-center gap-2 mt-6">
+            {reviews.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentSlide(idx)}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  idx === currentSlide ? 'bg-blue-600 w-6' : 'bg-gray-300'
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
         </div>
         
         <div

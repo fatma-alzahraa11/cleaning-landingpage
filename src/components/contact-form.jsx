@@ -396,7 +396,7 @@ export default function ContactForm({ refObj }) {
                   disabled={submitted}
                   className="inline-flex items-center justify-center rounded-full bg-blue-600 px-6 py-3 text-white font-medium shadow-md hover:-translate-y-0.5 hover:shadow-lg hover:bg-blue-700 active:bg-blue-800 transition-all disabled:opacity-60 font-oswald"
                 >
-                  {submitted ? "Wird gesendet..." : "Angebot anfordern"}
+                  {submitted ? "Wird gesendet..." : "Angebot Anfordern"}
                 </button>
                 <span className="text-xs text-slate-500 font-oswald">
                   Durch das Senden stimmen Sie unseren Bedingungen zu.

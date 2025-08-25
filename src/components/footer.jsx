@@ -1,4 +1,5 @@
 import React from 'react';
+import { Phone } from 'lucide-react'; 
 
 const Footer = ({ onCTA }) => {
   // Funktion für sanftes Scrollen zu den Abschnitten ohne URL-Änderung
@@ -36,7 +37,7 @@ const Footer = ({ onCTA }) => {
             Über uns
           </button>
           <button 
-            onClick={() => scrollToSection("services")} 
+            onClick={() => scrollToSection("why")} 
             className="hover:text-blue-700 font-oswald hover:underline"
           >
             Warum wir?
@@ -46,11 +47,19 @@ const Footer = ({ onCTA }) => {
           </button>
         </div>
 
-        {/* Telefonnummer und Adresse */}
+        {/* Telefonnummer */}
         <div className="text-center mt-4 md:mt-0">
-          <span className="text-sm text-slate-600 font-oswald block">
-            Telefon: +49 82150824751
+          <span className="text-sm text-slate-600 font-oswald  flex items-center">
+            <Phone className="text-blue-800 mr-2" size={18} /> 
+             +49 82150824751
           </span>
+          <a 
+            href="tel:+49017672595018"
+            className="text-sm text-blue-700 hover:text-blue-800 font-oswald  hover:underline cursor-pointer flex items-center"
+          >
+            <Phone className="text-blue-800 mr-2" size={18} /> 
+            +49 017672595018
+          </a>
           <span className="text-sm text-slate-600 font-oswald block">
             Adresse: Drentwrttstr. 12, 86154 Augsburg
           </span>

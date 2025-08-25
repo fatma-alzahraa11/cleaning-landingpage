@@ -31,8 +31,8 @@ export default function WhyChooseUs() {
           className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 transition-all duration-700 will-change-transform"
           data-animate
         >
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight font-oswald text-[#2B3A64]">Warum uns wählen?</h2>
-          <p className="text-slate-600 mt-3 font-oswald">Wir konzentrieren uns auf das, was zählt: Konsistenz, Fürsorge und Kommunikation.</p>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight font-oswald text-[#2B3A64]">Warum SDH-Gebäudereinigung?</h2>
+          <p className="text-slate-600 mt-3 font-oswald">SDH-Gebäudereinigung steht für Zuverlässigkeit, Präzision und faire Preise. Unser erfahrenes Team ist darauf geschult, auch die anspruchsvollsten Reini-gungsaufgaben mit höchster Sorgfalt zu erledigen. Wir sind nicht nur eine Reinigungsfirma, sondern Ihr Partner für Sauberkeit.</p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {features.map((f, idx) => (

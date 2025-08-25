@@ -40,7 +40,7 @@ export default function Header({ onCTA }) {
           />
 
           <span className="font-bold text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl font-oswald text-[#2B3A64]">
-            GEBÄUDEREINIGUNG
+            GEBÄUDEREINIGUNG 
           </span>
         </button>
 

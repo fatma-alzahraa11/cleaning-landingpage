@@ -14,10 +14,10 @@ export default function Services() {
     () => [
       {
         icon: <Broom className="size-6 text-blue-700" />,
-        title: "Professionelle Reinigungsdienste",
-        desc: "Umfassende und zuverlässige Reinigungslösungen für Büros, Wohnungen oder Unternehmen. Wir schaffen eine saubere, gesunde und komfortable Umgebung. Mit modernster Ausrüstung und Produkten übertreffen wir Ihre Erwartungen.",
+        title: "Professionelle Reinigungsfirma in Augsburg",
+        desc: "Mit erfahrenen Reinigungskräften, modernen Methoden und umweltfreundlichen Produkten garantieren wir gründliche Sauberkeit, flexible Termine und faire Preise – die perfekte Lösung für Haushalt und Büro in Augsburg.",
         img: "/images/service-cleaning.png",
-        bullets: ["Deep & standard", "Eco‑friendly", "Kitchens & baths"],
+        bullets: ["Maßgeschneiderte Lösungen für Haushalt & Büro", "Einsatz von modernen & umweltfreundlichen Produkten", "Gründliche Reinigung bis ins kleinste Detail"],
         imagePosition: "right",
       },
       {
@@ -58,9 +58,8 @@ export default function Services() {
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight font-oswald">
             Unsere Dienstleistungen
           </h2>
-          <p className="text-slate-600 mt-3 font-oswald">
-            Drei Wege, um Ihr Leben einfacher zu machen – wählen Sie einen oder
-            bündeln Sie für die reibungsloseste Erfahrung.
+          <p className="text-slate-600 mt-3 font-oswald text-2xl sm:text-2xl">
+            Ihre Putzfirma in Augsburg - Vertrauen Sie auf saubere Ergebnisse.
           </p>
         </div>
 
@@ -70,7 +69,7 @@ export default function Services() {
               key={s.title}
               className={`group relative transition-all duration-700 will-change-transform ${
                 idx === 0 || idx === 2
-                  ? "bg-gradient-to-br from-blue-50 to-blue-100/80 rounded-3xl pt-6 px-10 lg:pt-6 px-10 shadow-lg -mx-4 sm:-mx-6 lg:-mx-8"
+                  ? "bg-gradient-to-br from-blue-50 to-blue-100/80 rounded-3xl pt-6 lg:pt-6 px-10 shadow-lg -mx-4 sm:-mx-6 lg:-mx-8"
                   : ""
               }`}
               data-animate
@@ -131,7 +130,7 @@ export default function Services() {
                     src={s.img || "/placeholder.svg"}
                     alt={`${s.title} service`}
                     className={`w-full h-100 sm:h-[50rem] lg:h-[32rem] transition-transform duration-700 group-hover:scale-105 ${
-                      s.title === "Professionelle Reinigungsdienste"
+                      s.title === "Professionelle Reinigungsfirma in Augsburg"
                         ? "object-contain"
                         : "object-cover"
                     }`}
@@ -141,7 +140,7 @@ export default function Services() {
                     height="720"
                     style={{
                       objectPosition:
-                        s.title === "Professionelle Reinigungsdienste"
+                        s.title === "Professionelle Reinigungsfirma in Augsburg"
                           ? "center"
                           : "center",
                     }}
